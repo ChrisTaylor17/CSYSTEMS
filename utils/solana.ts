@@ -55,8 +55,9 @@ export async function mintCSTokens(
 
 export async function createWallet(): Promise<{ publicKey: string; privateKey: string }> {
   const keypair = Keypair.generate();
+  const bs58 = require('bs58');
   return {
     publicKey: keypair.publicKey.toBase58(),
-    privateKey: Buffer.from(keypair.secretKey).toString('base58'),
+    privateKey: bs58.encode(keypair.secretKey),
   };
 }
