@@ -1,5 +1,5 @@
 import { Connection, Keypair, PublicKey } from '@solana/web3.js';
-import { Metaplex, keypairIdentity, bundlrStorage } from '@metaplex-foundation/js';
+import { Metaplex, keypairIdentity } from '@metaplex-foundation/js';
 
 const NETWORK = process.env.NEXT_PUBLIC_SOLANA_NETWORK || 'devnet';
 const RPC_ENDPOINT = NETWORK === 'mainnet-beta' 
@@ -15,8 +15,7 @@ export async function mintMilestoneNFT(
 ): Promise<string> {
   const connection = new Connection(RPC_ENDPOINT);
   const metaplex = Metaplex.make(connection)
-    .use(keypairIdentity(payer))
-    .use(bundlrStorage());
+    .use(keypairIdentity(payer));
 
   const { nft } = await metaplex.nfts().create({
     uri: JSON.stringify({
