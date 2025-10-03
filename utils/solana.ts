@@ -13,8 +13,8 @@ export async function getServerKeypair(): Promise<Keypair> {
   if (!privateKeyString) {
     throw new Error('SOLANA_PRIVATE_KEY not configured');
   }
-  const privateKeyArray = Uint8Array.from(Buffer.from(privateKeyString, 'base58'));
-  return Keypair.fromSecretKey(privateKeyArray);
+  const decoded = require('bs58').decode(privateKeyString);
+  return Keypair.fromSecretKey(decoded);
 }
 
 export async function createCSToken(payer: Keypair): Promise<PublicKey> {
