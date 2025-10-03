@@ -1,0 +1,223 @@
+================================================================================
+ENVIRONMENT VARIABLES FOR VERCEL DEPLOYMENT
+================================================================================
+
+Copy and paste these into Vercel Dashboard → Settings → Environment Variables
+
+================================================================================
+REQUIRED VARIABLES (4 total)
+================================================================================
+
+1. OPENAI_API_KEY
+   ├─ Get from: https://platform.openai.com/api-keys
+   ├─ Format: sk-proj-xxxxxxxxxxxxxxxxxxxxx
+   ├─ Cost: ~$0.01 per request (add $5 credit to start)
+   └─ Environment: Production, Preview, Development
+
+2. NEXT_PUBLIC_SOLANA_NETWORK
+   ├─ Value: devnet (for testing) OR mainnet-beta (for production)
+   ├─ Recommendation: Start with devnet
+   └─ Environment: Production, Preview, Development
+
+3. SOLANA_PRIVATE_KEY
+   ├─ Get from: Phantom wallet (Settings → Export Private Key)
+   ├─ Format: Base58 encoded string
+   ├─ Security: Use dedicated wallet, NOT your personal wallet!
+   ├─ Fund wallet: https://solfaucet.com/ (for devnet)
+   └─ Environment: Production, Preview, Development
+
+4. NEXT_PUBLIC_APP_URL
+   ├─ Value: Your Vercel deployment URL
+   ├─ Example: https://consilience-dao.vercel.app
+   ├─ Note: Add this AFTER first deployment, then redeploy
+   └─ Environment: Production, Preview, Development
+
+================================================================================
+OPTIONAL VARIABLE (add later)
+================================================================================
+
+5. CS_TOKEN_MINT_ADDRESS
+   ├─ Get from: Run "node scripts/create-token.js" after deployment
+   ├─ Format: Solana public key (base58)
+   ├─ Note: App works without this, but token features won't function
+   └─ Environment: Production, Preview, Development
+
+================================================================================
+QUICK COPY-PASTE TEMPLATE
+================================================================================
+
+Variable Name: OPENAI_API_KEY
+Value: [paste your OpenAI key here]
+Environment: ✓ Production ✓ Preview ✓ Development
+
+Variable Name: NEXT_PUBLIC_SOLANA_NETWORK
+Value: devnet
+Environment: ✓ Production ✓ Preview ✓ Development
+
+Variable Name: SOLANA_PRIVATE_KEY
+Value: [paste your Solana private key here]
+Environment: ✓ Production ✓ Preview ✓ Development
+
+Variable Name: NEXT_PUBLIC_APP_URL
+Value: [paste your Vercel URL here after first deployment]
+Environment: ✓ Production ✓ Preview ✓ Development
+
+================================================================================
+STEP-BY-STEP SETUP
+================================================================================
+
+STEP 1: Get OpenAI API Key
+   1. Visit https://platform.openai.com/api-keys
+   2. Sign up or log in
+   3. Click "Create new secret key"
+   4. Copy the key (starts with sk-)
+   5. Add $5 billing credit
+
+STEP 2: Create Solana Wallet
+   1. Install Phantom: https://phantom.app/
+   2. Create new wallet
+   3. Switch to "Devnet" in settings
+   4. Go to Settings → Security & Privacy → Export Private Key
+   5. Copy the private key
+
+STEP 3: Get Free Devnet SOL
+   1. Copy your wallet address from Phantom
+   2. Visit https://solfaucet.com/
+   3. Paste address and select "Devnet"
+   4. Request airdrop (you'll get 1-2 SOL)
+
+STEP 4: Deploy to Vercel
+   1. Push code to GitHub
+   2. Go to https://vercel.com/new
+   3. Import your repository
+   4. Click "Deploy" (without variables first)
+
+STEP 5: Add Variables to Vercel
+   1. Go to your project in Vercel
+   2. Click Settings → Environment Variables
+   3. Add all 4 required variables above
+   4. Make sure to check all 3 environments for each
+
+STEP 6: Redeploy
+   1. Go to Deployments tab
+   2. Click "..." menu on latest deployment
+   3. Click "Redeploy"
+   4. Wait for deployment to complete
+
+STEP 7: Update App URL
+   1. Copy your Vercel URL (e.g., https://your-app.vercel.app)
+   2. Go back to Environment Variables
+   3. Update NEXT_PUBLIC_APP_URL with your actual URL
+   4. Redeploy again
+
+STEP 8: Test Your App
+   1. Visit your Vercel URL
+   2. Click "Get Started"
+   3. Create a profile
+   4. Click "Find Project Matches"
+   5. If AI responds, it's working! 🎉
+
+================================================================================
+SECURITY CHECKLIST
+================================================================================
+
+✓ Never commit .env files to git
+✓ Use devnet for testing (free)
+✓ Use separate wallet for dev/prod
+✓ Keep private keys absolutely secret
+✓ Set OpenAI spending limits
+✓ Monitor API usage regularly
+✓ Don't share API keys with anyone
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+Problem: "OpenAI API key not found"
+Solution: 
+   - Check variable name is exactly: OPENAI_API_KEY
+   - Verify key starts with sk-
+   - Ensure all 3 environments are checked
+   - Redeploy after adding
+
+Problem: "Solana private key not configured"
+Solution:
+   - Check variable name is exactly: SOLANA_PRIVATE_KEY
+   - Verify key is in base58 format (not JSON)
+   - Ensure wallet has SOL (use faucet)
+   - Redeploy after adding
+
+Problem: "Insufficient funds"
+Solution:
+   - For devnet: Visit https://solfaucet.com/
+   - For mainnet: Transfer SOL to wallet
+   - Wait a few seconds and try again
+
+Problem: Build fails
+Solution:
+   - Check all variable names match exactly
+   - Ensure no extra spaces in values
+   - Verify all required variables are set
+   - Check Vercel build logs for specific error
+
+================================================================================
+COST ESTIMATES
+================================================================================
+
+DEVELOPMENT (Devnet):
+   Solana: FREE ✓
+   OpenAI: ~$5-10/month for testing
+   Vercel: FREE ✓
+   Total: ~$5-10/month
+
+PRODUCTION (Mainnet):
+   Solana: ~$0.0005 per transaction
+   OpenAI: ~$0.01 per AI request
+   Vercel: FREE (Hobby) or $20/month (Pro)
+   Total: Scales with usage
+
+================================================================================
+MONITORING LINKS
+================================================================================
+
+OpenAI Usage: https://platform.openai.com/usage
+OpenAI Billing: https://platform.openai.com/account/billing
+Solana Explorer (Devnet): https://explorer.solana.com/?cluster=devnet
+Solana Explorer (Mainnet): https://explorer.solana.com/
+Vercel Dashboard: https://vercel.com/dashboard
+Solana Faucet: https://solfaucet.com/
+
+================================================================================
+SUPPORT
+================================================================================
+
+Documentation:
+   - START_HERE.md - Quick overview
+   - QUICKSTART.md - 10-minute setup guide
+   - ENVIRONMENT_VARIABLES.md - Detailed variable guide
+   - VERCEL_SETUP.md - Deployment instructions
+   - README.md - Full documentation
+
+Need Help?
+   - Check documentation files above
+   - Review Vercel build logs
+   - Check browser console for errors
+   - Open GitHub issue
+
+================================================================================
+READY TO DEPLOY?
+================================================================================
+
+1. ✓ Get all 4 required variables
+2. ✓ Push code to GitHub
+3. ✓ Deploy to Vercel
+4. ✓ Add environment variables
+5. ✓ Redeploy
+6. ✓ Test your app
+7. 🚀 You're live!
+
+Total time: ~10 minutes
+
+Good luck! 🎉
+
+================================================================================
